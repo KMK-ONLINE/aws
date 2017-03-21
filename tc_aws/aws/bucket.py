@@ -123,7 +123,8 @@ class Bucket(object):
         )
 
     def _clean_key(self, path):
-        logger.debug('Cleaning key: {path}'.format(path=path))
+        path = path.decode('utf-8')
+        logger.debug('Cleaning key: {path!r}'.format(path=path))
         key = path
         while '//' in key:
             logger.debug(key)
@@ -132,5 +133,5 @@ class Bucket(object):
         if '/' == key[0]:
             key = key[1:]
 
-        logger.debug('Cleansed key: {key}'.format(key=key))
+        logger.debug('Cleansed key: {key!r}'.format(key=key))
         return key
