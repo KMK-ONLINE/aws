@@ -34,6 +34,11 @@ def load(context, url, callback):
         callback(result)
         return
 
+    if key == '' or key is None:
+        result = LoaderResult(successful=False, error=LoaderResult.ERROR_NOT_FOUND)
+        callback(result)
+        return
+
     bucket_loader = Bucket(bucket, context.config.get('TC_AWS_REGION'),
                            context.config.get('TC_AWS_ENDPOINT'))
 
